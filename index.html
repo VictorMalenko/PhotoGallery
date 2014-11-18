@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>	
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/editForm.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/libraries/ie-emulation-modes-warning.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/libraries/ie10-viewport-bug-workaround.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Photo Gallery Application</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">		
+        <div class="col-sm-3 col-md-2 sidebar">
+
+			<!-- Albums -->
+			<h2 class="page-header">Albums</h2>	
+			  <ul class="nav nav-sidebar" data-bind="foreach: photosets">
+				<li>
+					<a href="#" data-bind="click: $root.getPhotosByPhotoset">
+						<div class="placeholder">
+						  <h4><span data-bind="text: title._content"><span></h4>
+						</div>
+					</a>
+				</li>				
+			  </ul>
+			  
+        </div>
+		
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<h1 class="page-header">Photos</h1>					
+			
+			<!-- Photos -->
+			<div class="row placeholders">	
+				<ul data-bind="foreach: photos" style="list-style-type: none;">
+					<li>				
+						<div class="col-xs-6 col-sm-3">
+							<a class="fancybox" rel="group" data-bind="attr: { href: imageUrl},click: $root.viewImage">
+								<img data-bind="attr: {src: imageUrl}" width="227" height="200"/>
+							</a>
+						  <h4><span data-bind="text: title"></span></h4>
+						  <input type="submit" value="edit" data-bind="click: $root.edit"/>
+						  <input type="submit" value="delete" data-bind="click: $root.deletePhoto"/>
+						  <a class="editA" href="#inline"></a>
+						</div>			
+					</li>
+				</ul>
+			</div>
+			
+			
+			 <div id="edit" style="display:none; background-color: #87CEFA" class="editForm">
+					<p class="submit">
+						<input id="edit_title" type="text" name="title" placeholder="title">
+					</p>
+					<!-- <button id="btnEdit" type="button">Edit</button> -->
+					<p class="submit">
+						<input id="btnEdit" type="submit" value="Edit"/>
+					<p>
+					
+			</div>
+
+        </div>
+      </div>
+	</div>
+	
+	<!-- Core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	
+	<!-- Bower components -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/knockout/dist/knockout.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+	<!-- Helper libraries -->
+    <script src="js/libraries/docs.min.js"></script>    
+	<script src="js/libraries/md5.min.js"></script>	
+	<script src="js/libraries/jquery.lightbox_me.js"></script>	
+	
+	<!-- FANCYBOX -->
+		<!-- Add mousewheel plugin (this is optional) -->
+		<script type="text/javascript" src="bower_components/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+		<!-- Add fancyBox -->
+		<link rel="stylesheet" href="bower_components/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="bower_components/fancybox/source/jquery.fancybox.pack.js"></script>
+		<!-- Optionally add helpers - button, thumbnail and/or media -->
+		<link rel="stylesheet" href="bower_components/fancybox/source/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="bower_components/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+		<script type="text/javascript" src="bower_components/fancybox/source/helpers/jquery.fancybox-media.js"></script>
+		<link rel="stylesheet" href="bower_components/fancybox/source/helpers/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="bower_components/fancybox/source/helpers/jquery.fancybox-thumbs.js"></script>
+	<!-- --FANCYBOX-- -->
+	
+	<!-- My scripts -->
+	<script src="js/config.js"></script> 
+	<script src="js/functions.js"></script>  	
+	<script src="ViewModel/PhotosetViewModel.js"></script>  
+ </body>
+  
+  <script>
+	$(document).ready(function(){			
+		var photosetViewModel = new PhotosetViewModel();
+		photosetViewModel.getPhotosets();
+		ko.applyBindings(photosetViewModel);
+	});	
+  </script>
+  
+  
+</html>
